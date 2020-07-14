@@ -1,0 +1,4 @@
+﻿  MyForm.cpp
+c:\users\ghost\source\repos\pinned\pinned\pinfunctions.h(168): warning C4101: 'e': variable local sin referencia
+  Custom.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
+  Pinned.vcxproj -> C:\Users\Ghost\source\repos\Pinned\Debug\Pinned.exe
