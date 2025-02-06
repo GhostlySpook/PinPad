@@ -1,0 +1,4 @@
+C:\Users\Corei5\source\repos\PinPad\Pinned\Release\Pinned.vcxproj.AssemblyReference.cache
+C:\Users\Corei5\source\repos\PinPad\Pinned\Release\Pinned.MyForm.resources
+C:\Users\Corei5\source\repos\PinPad\Pinned\Release\Pinned.Settings.resources
+C:\Users\Corei5\source\repos\PinPad\Pinned\Release\Pinned.vcxproj.GenerateResource.cache

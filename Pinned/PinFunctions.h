@@ -98,13 +98,15 @@ void savesettings(TextBox ^ txtbox) {
 	//Font size
 	cfile << txtbox->Font->SizeInPoints << std::endl;
 	//Font style
-	//cfile << (int)txtbox->Font->Style << std::endl;
-	/*//Font crossed
-	cfile << txtbox->Font->Strikeout << std::endl;
+	cfile << (int)txtbox->Font->Style << std::endl;
+	//Font crossed
+	//cfile << txtbox->Font->Strikeout << std::endl;
 	//Font underlined
-	cfile << txtbox->Font->Underline << std::endl;*/
+	//cfile << txtbox->Font->Underline << std::endl;
+	//Font unit
+	//cfile << (int)txtbox->Font->Unit << std::endl;
 	//Font alphabet
-	//cfile << txtbox->Font->GdiCharSet << std::endl;
+	cfile << (int)txtbox->Font->GdiCharSet << std::endl;
 
 	cfile.close();
 }
@@ -125,42 +127,42 @@ void loadsettings(TextBox ^ txtbox) {
 
 			String ^ argh = gcnew String(temp.c_str());
 			txtbox->ForeColor = ColorTranslator::FromHtml(argh);
-			//txtbox->ForeColor.FromArgb(temp);
-			//txtbox->ForeColor = Color::Red;
-			//String ^ argh = gcnew String(temp.c_str());
-			//txtbox->ForeColor.FromArgb(System::Convert::ToInt32(argh));
 
 			//Background
 			std::getline(cfile, temp);
 			argh = gcnew String(temp.c_str());
 			txtbox->BackColor = ColorTranslator::FromHtml(argh);
-			//txtbox->BackColor.FromArgb(std::stoi(temp));
-			//txtbox->BackColor = Color::Green;
-			//argh = gcnew String(temp.c_str());
-			//txtbox->BackColor.FromArgb(System::Convert::ToInt32(argh));
 
 			//Font
 			//Font name
 			std::getline(cfile, temp);
 			System::String ^ fname = gcnew System::String(temp.c_str());
-			//System::String ^ fname = gcnew String(temp.c_str);
 
 			//Font size
 			std::getline(cfile, temp);
-			Single fsize = std::stof(temp);
+			Single fsize = Single(std::stof(temp));
 
 			//Font style
+			std::getline(cfile, temp);
+			System::Drawing::FontStyle fstyle = (System::Drawing::FontStyle)std::stoi(temp);
+
+			//Font crossed
+			//std::getline(cfile, temp);
+
+
+			//Font underlined
 			/*std::getline(cfile, temp);
-			System::Drawing::FontStyle fstyle = (System::Drawing::FontStyle)std::stoi(temp);*/
+			int temp_underlined = std::stoi(temp);*/
 
 			//Font unit
-			//System::Drawing::GraphicsUnit funit = 1;
+			//std::getline(cfile, temp);
+			System::Drawing::GraphicsUnit funit = (System::Drawing::GraphicsUnit) 3/*std::stoi(temp)*/;
 
 			//Font charset
-			/*std::getline(cfile, temp);
-			Byte fcharset = temp.c_str;*/
+			std::getline(cfile, temp);
+			Byte fcharset = Byte(std::stoi(temp));
 
-			Font ^ f = gcnew Font(fname, fsize);
+			Font ^ f = gcnew Font(fname, fsize, fstyle, funit, fcharset);
 			txtbox->Font = f;
 
 			delete fname;
@@ -269,9 +271,11 @@ void loadtext(TextBox^ txtbox) {
 }
 
 void showfontdial(TextBox ^ txtbox) {
-	FontDialog ^ dlgFont = gcnew FontDialog;
+	FontDialog ^ dlgFont = gcnew FontDialog();
+
 	dlgFont->ShowColor = true;
-	dlgFont->Font = txtbox->Font;
+
+	dlgFont->Font = gcnew Font(txtbox->Font->FontFamily, txtbox->Font->Size, txtbox->Font->Style, txtbox->Font->Unit, txtbox->Font->GdiCharSet);
 	dlgFont->Color = txtbox->ForeColor;
 
 	if (dlgFont->ShowDialog() == System::Windows::Forms::DialogResult::OK) {

@@ -1,3 +1,8 @@
 ﻿  MyForm.cpp
-c:\users\ghost\source\repos\pinned\pinned\pinfunctions.h(172): warning C4101: 'e': variable local sin referencia
-  Pinned.vcxproj -> C:\Users\Ghost\source\repos\Pinned\Release\Pinned.exe
+C:\Users\Corei5\source\repos\PinPad\Pinned\PinFunctions.h(174,22): warning C4101: 'e': unreferenced local variable
+  (compiling source file 'MyForm.cpp')
+  
+  Settings.cpp
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Generating Code...
+  Pinned.vcxproj -> C:\Users\Corei5\source\repos\PinPad\Release\Pinned.exe
